@@ -1,14 +1,42 @@
 @BASEURL=http://localhost:5000/api/v1
 
 
+POST {{BASEURL}}/users
+Content-Type: application/json
+
+{
+  "id": "abc2",
+  "password": "12342",
+  "name": "test1"
+}
+
 GET {{BASEURL}}/users
+
+GET {{BASEURL}}/users/629afe726527a60394a70377
+
+PUT {{BASEURL}}/users/629afe726527a60394a70377
+Content-Type: application/json
+
+{
+  "password": "change1234",
+  "name": "changetest",
+  "role": "COMPOSER"
+}
+
+
+DELETE {{BASEURL}}/users/629afda88697ad20b47ac8c0
+
+
+
+
 
 POST {{BASEURL}}/authentication/login
 Content-Type: application/json
 
 {
   "id": "abc",
-  "password": "1234"
+  "password": "1234",
+  "name": "test"
 }
 
 
