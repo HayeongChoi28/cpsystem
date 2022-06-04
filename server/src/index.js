@@ -8,6 +8,7 @@ import Router from "@/router";
 import Conf from "@/conf";
 import Mongoose from "mongoose";
 
+// 몽고 디비에 연결 - Conf.mongoUrl
 Mongoose.connect(Conf.mongoUrl);
 
 const app = new Koa();

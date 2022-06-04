@@ -2,3 +2,14 @@
 
 
 GET {{BASEURL}}/users
+
+POST {{BASEURL}}/authentication/login
+Content-Type: application/json
+
+{
+  "id": "abc",
+  "password": "1234"
+}
+
+
+GET {{BASEURL}}/authentication/logout
