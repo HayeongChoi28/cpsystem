@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Path from "path";
 import Koa from "koa";
 import KoaCors from "@koa/cors";

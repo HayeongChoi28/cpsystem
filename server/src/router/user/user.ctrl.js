@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import UserDb from "@/database/user";
 
 export const getParams = async (ctx, next) => {
@@ -25,8 +26,7 @@ export const getBody = async (ctx, next) => {
   await next();
 };
 
-// eslint-disable-next-line no-unused-vars
-export const search = async (ctx, next) => {
+export const search = async (ctx) => {
   try {
     const items = await UserDb.find().exec();
 
@@ -39,7 +39,7 @@ export const search = async (ctx, next) => {
   }
 };
 
-export const get = async (ctx, next) => {
+export const get = async (ctx) => {
   try {
     const { id } = ctx.state.params;
 
@@ -53,7 +53,7 @@ export const get = async (ctx, next) => {
   }
 };
 
-export const create = async (ctx, next) => {
+export const create = async (ctx) => {
   try {
     const { id, password, name } = ctx.request.body;
 
@@ -71,7 +71,7 @@ export const create = async (ctx, next) => {
   }
 };
 
-export const update = async (ctx, next) => {
+export const update = async (ctx) => {
   try {
     const { id } = ctx.state.params;
     const { password, name, role } = ctx.state.body;
@@ -102,7 +102,7 @@ export const update = async (ctx, next) => {
   }
 };
 
-export const remove = async (ctx, next) => {
+export const remove = async (ctx) => {
   try {
     const { id } = ctx.params;
 
