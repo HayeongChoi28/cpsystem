@@ -3,7 +3,7 @@ import * as userApi from "./user.ctrl";
 
 const router = new KoaRouter();
 
-router.get("/", userApi.search);
+router.get("/", userApi.getQueryString, userApi.search);
 router.get("/:id", userApi.getParams, userApi.get);
 router.post("/", userApi.create);
 router.put("/:id", userApi.getParams, userApi.getBody, userApi.update);

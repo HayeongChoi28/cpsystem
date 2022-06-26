@@ -1,6 +1,42 @@
 /* eslint-disable no-console */
 import UserDb from "@/database/user";
 
+export const getQueryString = async (ctx, next) => {
+  const {
+    offset, limit, sort, ...others
+  } = ctx.query;
+
+  ctx.state.query = {
+    ...others,
+  };
+
+  if (!offset) {
+    ctx.state.query.offset = 0;
+  } else if (offset < 0) {
+    ctx.state.query.offset = 0;
+  } else {
+    ctx.state.query.offset = parseInt(offset, 10);
+  }
+
+  if (!limit) {
+    ctx.state.query.limit = 10;
+  } else if (limit < 0) {
+    ctx.state.query.limit = 10;
+  } else if (limit > 10000) {
+    ctx.state.query.limit = 10000;
+  } else {
+    ctx.state.query.limit = parseInt(limit, 10);
+  }
+
+  if (!sort) {
+    ctx.state.query.sort = "createdAt";
+  } else {
+    ctx.state.query.sort = sort;
+  }
+
+  await next();
+};
+
 export const getParams = async (ctx, next) => {
   const { id } = ctx.params;
 
@@ -28,7 +64,11 @@ export const getBody = async (ctx, next) => {
 
 export const search = async (ctx) => {
   try {
-    const items = await UserDb.find().exec();
+    console.log(ctx.state.query);
+    const { offset, limit, sort } = ctx.state.query;
+
+    const items = await UserDb.find().skip(offset).limit(limit).sort(sort)
+      .exec();
 
     ctx.status = 200;
     ctx.body = {
@@ -36,6 +76,7 @@ export const search = async (ctx) => {
     };
   } catch (e) {
     ctx.status = 500;
+    console.log(e);
   }
 };
 

@@ -5,12 +5,35 @@ POST {{BASEURL}}/users
 Content-Type: application/json
 
 {
-  "id": "abc2",
+  "id": "abc3",
   "password": "12342",
   "name": "test1"
 }
 
+// search
 GET {{BASEURL}}/users
+
+// 1 page
+GET {{BASEURL}}/users?offset=0&limit=10&sort=-createdAt&searchField=name&serchValue=test&searchOperator=AND, LIKE...
+// 2 page
+GET {{BASEURL}}/users?offset=10&limit=10
+// 3 page
+GET {{BASEURL}}/users?offset=20&limit=10
+
+GET {{BASEURL}}/users?offset=-1&limit=20000
+
+GET {{BASEURL}}/users?offset=3&limit=1
+
+
+
+  let newFind = this.find(query.filter).limit(query.limit);
+
+  if (query.select) newFind = newFind.select(query.select);
+  if (query.skip) newFind = newFind.skip(query.skip);
+  if (query.populate) newFind = newFind.populate(query.populate);
+  if (query.sort) newFind = newFind.sort(query.sort);
+
+
 
 GET {{BASEURL}}/users/629afe726527a60394a70377
 
