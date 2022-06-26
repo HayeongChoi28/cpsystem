@@ -1,8 +1,44 @@
 /* eslint-disable no-console */
-import UserDb from "@/database/user";
+import ItemDb from "@/database/item";
 
 export const setDb = async (ctx, next) => {
-  ctx.state.db = UserDb;
+  ctx.state.db = ItemDb;
+
+  await next();
+};
+
+export const getQueryString = async (ctx, next) => {
+  const {
+    offset, limit, sort, ...others
+  } = ctx.query;
+
+  ctx.state.query = {
+    ...others,
+  };
+
+  if (!offset) {
+    ctx.state.query.offset = 0;
+  } else if (offset < 0) {
+    ctx.state.query.offset = 0;
+  } else {
+    ctx.state.query.offset = parseInt(offset, 10);
+  }
+
+  if (!limit) {
+    ctx.state.query.limit = 10;
+  } else if (limit < 0) {
+    ctx.state.query.limit = 10;
+  } else if (limit > 10000) {
+    ctx.state.query.limit = 10000;
+  } else {
+    ctx.state.query.limit = parseInt(limit, 10);
+  }
+
+  if (!sort) {
+    ctx.state.query.sort = "createdAt";
+  } else {
+    ctx.state.query.sort = sort;
+  }
 
   await next();
 };
@@ -36,7 +72,7 @@ export const get = async (ctx) => {
   try {
     const { id } = ctx.state.params;
 
-    const response = await UserDb.findOne({ _id: id }).exec();
+    const response = await ItemDb.findOne({ _id: id }).exec();
 
     ctx.status = 200;
     ctx.body = response;
@@ -50,7 +86,7 @@ export const create = async (ctx) => {
   try {
     const { id, password, name } = ctx.request.body;
 
-    const newUser = new UserDb({
+    const newUser = new ItemDb({
       id, password, name,
     });
 
@@ -69,7 +105,7 @@ export const update = async (ctx) => {
     const { id } = ctx.state.params;
     const { password, name, role } = ctx.state.body;
 
-    await UserDb.updateOne(
+    await ItemDb.updateOne(
       // 검색 조건
       {
         _id: id,
@@ -85,7 +121,7 @@ export const update = async (ctx) => {
       },
     ).exec();
 
-    const response = await UserDb.findOne({ _id: id }).exec();
+    const response = await ItemDb.findOne({ _id: id }).exec();
 
     ctx.status = 200;
     ctx.body = response;
@@ -99,7 +135,7 @@ export const remove = async (ctx) => {
   try {
     const { id } = ctx.params;
 
-    await UserDb.remove({ _id: id });
+    await ItemDb.remove({ _id: id });
 
     ctx.status = 200;
   } catch (e) {
