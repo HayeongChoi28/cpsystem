@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import UserDb from "@/database/user";
+import Boom from "@hapi/boom";
 
 export const setDb = async (ctx, next) => {
   ctx.state.db = UserDb;
@@ -33,77 +34,57 @@ export const getBody = async (ctx, next) => {
 };
 
 export const get = async (ctx) => {
-  try {
-    const { id } = ctx.state.params;
+  const { id } = ctx.state.params;
 
-    const response = await UserDb.findOne({ _id: id }).exec();
+  const response = await UserDb.findOne({ _id: id }).exec();
 
-    ctx.status = 200;
-    ctx.body = response;
-  } catch (e) {
-    ctx.status = 500;
-    console.log(e);
-  }
+  ctx.status = 200;
+  ctx.body = response;
 };
 
 export const create = async (ctx) => {
-  try {
-    const { id, password, name } = ctx.request.body;
+  const { id, password, name } = ctx.request.body;
 
-    const newUser = new UserDb({
-      id, password, name,
-    });
+  const newUser = new UserDb({
+    id, password, name,
+  });
 
-    const response = await newUser.save();
+  const response = await newUser.save();
 
-    ctx.status = 200;
-    ctx.body = response;
-  } catch (e) {
-    ctx.status = 500;
-    console.log(e);
-  }
+  ctx.status = 200;
+  ctx.body = response;
 };
 
 export const update = async (ctx) => {
-  try {
-    const { id } = ctx.state.params;
-    const { password, name, role } = ctx.state.body;
+  const { id } = ctx.state.params;
+  const { password, name, role } = ctx.state.body;
 
-    await UserDb.updateOne(
-      // 검색 조건
-      {
-        _id: id,
-      },
-      // 업데이트 구문
-      {
-        $set:
+  await UserDb.updateOne(
+    // 검색 조건
+    {
+      _id: id,
+    },
+    // 업데이트 구문
+    {
+      $set:
         {
           password,
           name,
           role,
         },
-      },
-    ).exec();
+    },
+  ).exec();
 
-    const response = await UserDb.findOne({ _id: id }).exec();
+  const response = await UserDb.findOne({ _id: id }).exec();
 
-    ctx.status = 200;
-    ctx.body = response;
-  } catch (e) {
-    ctx.status = 500;
-    console.log(e);
-  }
+  ctx.status = 200;
+  ctx.body = response;
 };
 
 export const remove = async (ctx) => {
-  try {
-    const { id } = ctx.params;
+  const { id } = ctx.params;
 
-    await UserDb.remove({ _id: id });
+  await UserDb.remove({ _id: id });
 
-    ctx.status = 200;
-  } catch (e) {
-    ctx.status = 500;
-    console.log(e);
-  }
+  ctx.status = 200;
 };
