@@ -7,14 +7,22 @@ import KoaHelmet from "koa-helmet";
 import KoaBody from "koa-body";
 import Router from "@/router";
 import Conf from "@/conf";
-// import Mongoose from "mongoose";
+import mysql from "mysql";
 import errorHandlerMd from "./middlewares/errorHandlerMd";
 import { routerAllowMethodsMd, routerRoutesMd } from "./middlewares/routerMd";
 
-// 몽고 디비에 연결 - Conf.mongoUrl
-// Mongoose.connect(Conf.mongoUrl);
+var connection = mysql.createConnection({
+  host     : Conf.mysqlHost,
+  user     : Conf.mysqlUser,
+  password : Conf.mysqlPassword,
+  database : Conf.mysqlDatabase,
+});
+connection.connect();
 
 const app = new Koa();
+
+app.context.db = connection;
+
 app.use(
   KoaCompose([
     errorHandlerMd,
@@ -31,7 +39,6 @@ app.use(
   ])
 );
 
-// app.use(Router.routes()).use(Router.allowedMethods());
 app.use(routerRoutesMd(Router)).use(routerAllowMethodsMd(Router));
 
 app.listen(Conf.port, () => {
