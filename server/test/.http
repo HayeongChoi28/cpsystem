@@ -1,6 +1,30 @@
 @BASEURL=http://localhost:5000/api/v1
 
 
+GET {{BASEURL}}/ceotb
+
+
+POST {{BASEURL}}/ceotb
+Content-Type: application/json
+
+{
+  "ceoId":"a-ceo",
+  "ceoPw": "1234",
+  "ceoPt": 5
+}
+
+PUT {{BASEURL}}/ceotb
+Content-Type: application/json
+
+{
+  "ceoId":"a-ceo",
+  "ceoPw": "12345",
+  "ceoPt": 10
+}
+
+DELETE {{BASEURL}}/ceotb/a-ceo
+
+
 POST {{BASEURL}}/users
 Content-Type: application/json
 

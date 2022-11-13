@@ -9,6 +9,7 @@ import Router from "@/router";
 import Conf from "@/conf";
 import sqlite3 from "sqlite3";
 import AppRootPath from "app-root-path";
+import util from "util";
 import errorHandlerMd from "./middlewares/errorHandlerMd";
 import { routerAllowMethodsMd, routerRoutesMd } from "./middlewares/routerMd";
 
@@ -16,6 +17,9 @@ const databaseFile = `${AppRootPath}/datasource/coupon_schema.sqlite`;
 const connection = new (sqlite3.verbose()).Database(databaseFile);
 
 const app = new Koa();
+
+connection.get = util.promisify(connection.get);
+connection.all = util.promisify(connection.all);
 
 app.context.db = connection;
 
