@@ -7,17 +7,13 @@ import KoaHelmet from "koa-helmet";
 import KoaBody from "koa-body";
 import Router from "@/router";
 import Conf from "@/conf";
-import mysql from "mysql";
+import sqlite3 from "sqlite3";
+import AppRootPath from "app-root-path";
 import errorHandlerMd from "./middlewares/errorHandlerMd";
 import { routerAllowMethodsMd, routerRoutesMd } from "./middlewares/routerMd";
 
-var connection = mysql.createConnection({
-  host     : Conf.mysqlHost,
-  user     : Conf.mysqlUser,
-  password : Conf.mysqlPassword,
-  database : Conf.mysqlDatabase,
-});
-connection.connect();
+const databaseFile = `${AppRootPath}/datasource/coupon_schema.sqlite`;
+const connection = new (sqlite3.verbose()).Database(databaseFile);
 
 const app = new Koa();
 
@@ -36,7 +32,7 @@ app.use(
         keepExtensions: true,
       },
     }),
-  ])
+  ]),
 );
 
 app.use(routerRoutesMd(Router)).use(routerAllowMethodsMd(Router));

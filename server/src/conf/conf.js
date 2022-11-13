@@ -3,10 +3,6 @@
 
 const conf = (env) => ({
   port: parseInt(env.PORT || "5000", 10),
-  mysqlHost: env.MYSQL_HOST,
-  mysqlUser: env.MYSQL_USER,
-  mysqlPassword: env.MYSQL_PASSWORD,
-  mysqlDatabase: env.MYSQL_DATABASE,
 });
 
 export default conf;
