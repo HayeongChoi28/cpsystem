@@ -17,7 +17,7 @@ export const create = async (ctx) => {
     const { ceoId, ceoPw, ceoPt } = ctx.request.body;
 
     const stmt = db.prepare(
-      "INSERT INTO ceotb (ceoId, ceoPw, ceoPt) VALUES (?, ?, ?)"
+      "INSERT INTO ceotb (ceoId, ceoPw, ceoPt) VALUES (?, ?, ?)",
     );
     stmt.run(ceoId, ceoPw, ceoPt);
     stmt.finalize();
@@ -34,7 +34,7 @@ export const update = async (ctx) => {
     const { ceoId, ceoPw, ceoPt } = ctx.request.body;
 
     const stmt = db.prepare(
-      "UPDATE ceotb SET ceoPw =? , ceoPt=? where ceoId = ?"
+      "UPDATE ceotb SET ceoPw =? , ceoPt=? where ceoId = ?",
     );
     stmt.run(ceoPw, ceoPt, ceoId);
     stmt.finalize();
@@ -65,7 +65,7 @@ export const ceologin = async (ctx) => {
     const { db } = ctx;
     const { ceoId, ceoPw } = ctx.request.body;
 
-    const sql = "SELECT ceoId, ceoPw FROM ceotb where ceoId=? and ceoPw=?";
+    const sql = "SELECT ceoId, ceoPw, ceoPt FROM ceotb where ceoId=? and ceoPw=?";
     const result = await db.get(sql, [ceoId, ceoPw]);
     ctx.status = 200;
     ctx.body = result;
