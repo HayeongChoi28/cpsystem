@@ -13,6 +13,21 @@ Content-Type: application/json
   "ceoPt": 5
 }
 
+
+POST {{BASEURL}}/ceotb/ceo/login
+Content-Type: application/json
+
+{
+  "ceoId":"a-ceo",
+  "ceoPw": "12345"
+  
+}
+
+
+
+
+
+
 PUT {{BASEURL}}/ceotb
 Content-Type: application/json
 

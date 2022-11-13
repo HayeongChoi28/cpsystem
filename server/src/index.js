@@ -14,7 +14,7 @@ import errorHandlerMd from "./middlewares/errorHandlerMd";
 import { routerAllowMethodsMd, routerRoutesMd } from "./middlewares/routerMd";
 
 const databaseFile = `${AppRootPath}/datasource/coupon_schema.sqlite`;
-const connection = new (sqlite3.verbose()).Database(databaseFile);
+const connection = new (sqlite3.verbose().Database)(databaseFile);
 
 const app = new Koa();
 
@@ -36,7 +36,7 @@ app.use(
         keepExtensions: true,
       },
     }),
-  ]),
+  ])
 );
 
 app.use(routerRoutesMd(Router)).use(routerAllowMethodsMd(Router));
