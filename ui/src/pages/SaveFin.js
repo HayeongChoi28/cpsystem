@@ -1,7 +1,8 @@
+import React from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { Form, Navbar, Container, Nav } from "react-bootstrap";
 import { useState } from "react";
-import data from "../data.js";
+import data from "../data";
 
 function SaveFin() {
   let navigate = useNavigate();

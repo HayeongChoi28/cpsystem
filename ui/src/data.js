@@ -24,4 +24,9 @@ const Place = [
   { cafename: "hello", cafeplace: "노원구" },
 ];
 
-export {};
+const cp = 0;
+
+export  default [
+  { id: "abc", cp: 8, pw: "1234"},
+  { id: "123bc", cp: 0, pw: "1234"}
+];
