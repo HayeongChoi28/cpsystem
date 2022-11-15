@@ -65,7 +65,7 @@ export const ceologin = async (ctx) => {
     const { db } = ctx;
     const { ceoId, ceoPw } = ctx.request.body;
 
-    const sql = "SELECT ceoId, ceoPw FROM ceotb where ceoId=? and ceoPw=?";
+    const sql = "SELECT ceoId, ceoPw, ceoPt FROM ceotb where ceoId=? and ceoPw=?";
     const result = await db.get(sql, [ceoId, ceoPw]);
     ctx.status = 200;
     ctx.body = result;
