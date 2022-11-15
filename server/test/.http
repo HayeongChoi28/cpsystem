@@ -34,7 +34,7 @@ Content-Type: application/json
 {
   "ceoId":"a-ceo",
   "ceoPw": "12345",
-  "ceoPt": 10
+  "ceoPt": 8
 }
 
 DELETE {{BASEURL}}/ceotb/a-ceo

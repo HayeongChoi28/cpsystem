@@ -64,16 +64,17 @@ export const remove = async (ctx) => {
 export const custlogin = async (ctx) => {
   try {
     const { db } = ctx;
-    const { custId, custPw } = ctx.request.body;
+    const { custId, custPw, custPt } = ctx.request.body;
 
-    const sql = "SELECT custId, custPw FROM custtb where custId=? and custPw=?";
-    const result = await db.get(sql, [custId, custPw]);
+    const sql = "SELECT custId, custPw, custPt FROM custtb where custId=? and custPw=?";
+    const result = await db.get(sql, [custId, custPw,custPt]);
     ctx.status = 200;
     ctx.body = result;
   } catch (e) {
     console.log(e);
   }
 };
+
 
 export const custid = async (ctx) => {
   try {

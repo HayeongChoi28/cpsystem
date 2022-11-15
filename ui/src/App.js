@@ -17,6 +17,34 @@ import axios from "axios";
 
 function App() {
   const navigate = useNavigate();
+
+  // const custhandleLogin = () => {
+  //   axios
+  //     .post("/api/v1/cust/login", {
+  //       ceoId: "a-ceo",
+  //       ceoPw: "12345",
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       navigate("/CustomerMain");
+  //     });
+  // };
+  // const custhandleLogin = () => {
+  //   axios
+  //     .post("/api/v1/ceo/login", {
+  //       custId: "a-ceo",
+  //       custPw: "12345",
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data);
+
+  //       if (response.data.ceoPt >= 10) {
+  //         navigate("/use");
+  //       } else {
+  //         navigate("/save");
+  //       }
+  //     });
+  // };
   return (
     <>
       <div className="nav justify-content-end bg-dark">
@@ -53,8 +81,10 @@ function App() {
               <div className="Btn">
                 <button
                   onClick={() => {
+                    // 가현 : id, pw 체크 후 맞으면 ceoMain으로 넘어가게
                     navigate("./CeoMain");
                   }}
+                  // onClick={custhandleLogin}
                   type="button"
                   className="btn btn-dark"
                 >
@@ -62,21 +92,13 @@ function App() {
                 </button>
                 <button
                   onClick={() => {
+                    //id, pw 체크 후 맞으면 customerMain으로 넘어가게
                     navigate("./CustomerMain");
                   }}
                   type="button"
                   className="btn btn-dark"
                 >
                   사용자로그인
-                </button>
-                <button
-                  onClick={() => {
-                    axios.get("/api/v1/ceotb").then((data) => {
-                      console.log(data);
-                    });
-                  }}
-                >
-                  버튼
                 </button>
               </div>
             </>
