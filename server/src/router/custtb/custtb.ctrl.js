@@ -1,8 +1,9 @@
+// custtb에 custId, custPw, custPt
 export const read = async (ctx) => {
   try {
     const { db } = ctx;
 
-    const sql = "SELECT ceoId, ceoPw, ceoPt FROM ceotb";
+    const sql = "SELECT custId, custPw, custPt FROM custtb";
     const result = await db.all(sql);
     ctx.status = 200;
     ctx.body = result;
@@ -14,12 +15,12 @@ export const read = async (ctx) => {
 export const create = async (ctx) => {
   try {
     const { db } = ctx;
-    const { ceoId, ceoPw, ceoPt } = ctx.request.body;
+    const { custId, custPw, custPt } = ctx.request.body;
 
     const stmt = db.prepare(
-      "INSERT INTO ceotb (ceoId, ceoPw, ceoPt) VALUES (?, ?, ?)",
+      "INSERT INTO custtb (custId, custPw, custPt) VALUES (?, ?, ?)",
     );
-    stmt.run(ceoId, ceoPw, ceoPt);
+    stmt.run(custId, custPw, custPt);
     stmt.finalize();
   } catch (e) {
     console.log(e);
@@ -31,12 +32,12 @@ export const create = async (ctx) => {
 export const update = async (ctx) => {
   try {
     const { db } = ctx;
-    const { ceoId, ceoPw, ceoPt } = ctx.request.body;
+    const { custId, custPw, custPt } = ctx.request.body;
 
     const stmt = db.prepare(
-      "UPDATE ceotb SET ceoPw =? , ceoPt=? where ceoId = ?",
+      "UPDATE custtb SET custPw =? , custPt=? where custId = ?",
     );
-    stmt.run(ceoPw, ceoPt, ceoId);
+    stmt.run(custPw, custPt, custId);
     stmt.finalize();
   } catch (e) {
     console.log(e);
@@ -48,10 +49,10 @@ export const update = async (ctx) => {
 export const remove = async (ctx) => {
   try {
     const { db } = ctx;
-    const { ceoId } = ctx.params;
+    const { custId } = ctx.params;
 
-    const stmt = db.prepare("DELETE FROM ceotb where ceoId = ?");
-    stmt.run(ceoId);
+    const stmt = db.prepare("DELETE FROM custtb where custId = ?");
+    stmt.run(custId);
     stmt.finalize();
   } catch (e) {
     console.log(e);
@@ -60,27 +61,13 @@ export const remove = async (ctx) => {
   ctx.status = 200;
 };
 
-export const ceologin = async (ctx) => {
+export const custlogin = async (ctx) => {
   try {
     const { db } = ctx;
-    const { ceoId, ceoPw } = ctx.request.body;
+    const { custId, custPw } = ctx.request.body;
 
-    const sql = "SELECT ceoId, ceoPw FROM ceotb where ceoId=? and ceoPw=?";
-    const result = await db.get(sql, [ceoId, ceoPw]);
-    ctx.status = 200;
-    ctx.body = result;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const ceologincheck = async (ctx) => {
-  try {
-    const { db } = ctx;
-    const { ceoId, ceoPw, ceoPt } = ctx.request.body;
-
-    const sql = "SELECT ceoId, ceoPw, ceoPt FROM ceotb";
-    const result = await db.get(sql, [ceoId, ceoPw, ceoPt]);
+    const sql = "SELECT custId, custPw FROM custtb where custId=? and custPw=?";
+    const result = await db.get(sql, [custId, custPw]);
     ctx.status = 200;
     ctx.body = result;
   } catch (e) {
