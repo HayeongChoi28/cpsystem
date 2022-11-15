@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Navbar, Container, Nav } from "react-bootstrap";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,6 +13,7 @@ import UseFin from "./pages/UseFin";
 // import data from "./data";
 import Admin from "./pages/Admin";
 import Checkpw from "./pages/Checkpw";
+import axios from "axios";
 
 function App() {
   const navigate = useNavigate();
@@ -67,6 +68,15 @@ function App() {
                   className="btn btn-dark"
                 >
                   사용자로그인
+                </button>
+                <button
+                  onClick={() => {
+                    axios.get("/api/v1/ceotb").then((data) => {
+                      console.log(data);
+                    });
+                  }}
+                >
+                  버튼
                 </button>
               </div>
             </>
