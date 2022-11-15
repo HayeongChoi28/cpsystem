@@ -9,5 +9,5 @@ router.put("/", custtbController.update);
 router.delete("/:custId", custtbController.remove);
 
 router.post("/cust/login", custtbController.custlogin);
-
+router.post("/cust/custid", custtbController.custlogin);
 export default router;
