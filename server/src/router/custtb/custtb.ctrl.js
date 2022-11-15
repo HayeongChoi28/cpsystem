@@ -77,10 +77,10 @@ export const ceologin = async (ctx) => {
 export const ceologincheck = async (ctx) => {
   try {
     const { db } = ctx;
-    const { ceoId, ceoPw } = ctx.request.body;
+    const { ceoId, ceoPw, ceoPt } = ctx.request.body;
 
-    const sql = "SELECT ceoId, ceoPw FROM ceotb where ceoId=? and ceoPw=?";
-    const result = await db.get(sql, [ceoId, ceoPw]);
+    const sql = "SELECT ceoId, ceoPw, ceoPt FROM ceotb";
+    const result = await db.get(sql, [ceoId, ceoPw, ceoPt]);
     ctx.status = 200;
     ctx.body = result;
   } catch (e) {
