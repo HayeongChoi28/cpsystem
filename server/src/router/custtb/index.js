@@ -8,6 +8,6 @@ router.post("/", custtbController.create);
 router.put("/", custtbController.update);
 router.delete("/:custId", custtbController.remove);
 
-router.post("/ceo/login", custtbController.ceologin);
+router.post("/cust/login", custtbController.ceologin);
 
 export default router;
