@@ -59,7 +59,7 @@ export const remove = async (ctx) => {
 
   ctx.status = 200;
 };
-
+/*
 export const ceologin = async (ctx) => {
   try {
     const { db } = ctx;
@@ -86,4 +86,4 @@ export const ceologincheck = async (ctx) => {
   } catch (e) {
     console.log(e);
   }
-};
+}; */
