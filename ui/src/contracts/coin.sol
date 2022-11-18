@@ -1,4 +1,4 @@
-pragma solidity ^0.8.4;
+pragma solidity ^0.5.0;
 
 contract Coin {
 
@@ -52,7 +52,7 @@ contract Coin {
         }
     }
 
-    function checkCoin(address walletaddress) public{//코인조회-->프런트 상 쿠폰 갯수를 의미
+    function checkCoin(address walletaddress) public{//코인조회-->프런트 상 쿠폰 갯수를
         return balances[walletaddress];
     }
                                             
