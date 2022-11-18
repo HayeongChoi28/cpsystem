@@ -13,7 +13,7 @@ module.exports = {
   contracts_build_directory: "./src/truffle_abis/",
   compilers: {
     solc: {
-      vesrion: "^0.5.0",
+      vesrion: "^0.8.4",
       optimizer: {
         enabled: true,
         runs: 200,
