@@ -4,7 +4,6 @@ import { Form, Navbar, Container, Nav } from "react-bootstrap";
 import { useState } from "react";
 import placedata from "../placedata.js";
 import data from "../Ceo_data.js";
-import cafe from "../img/cafe.jpg";
 
 function CustomerMain() {
   let [place] = useState(placedata);
@@ -29,7 +28,7 @@ function CustomerMain() {
               <div className="container">
                 <div className="row">
                   {place.map((a, i) => {
-                    return <Card place={place[i]} i={i} cafe={cafe}></Card>;
+                    return <Card place={place[i]} i={i}></Card>;
                   })}
                 </div>
               </div>
@@ -44,7 +43,12 @@ function CustomerMain() {
 function Card(props) {
   return (
     <div className="col-md-6">
-      <img className="cafeImage" alt="cafeImage" src={props.cafe} width="80%" />
+      <img
+        className="cafeImage"
+        alt="cafeImage"
+        src={"../img/cafe" + props.i + ".jpg"}
+        width="80%"
+      />
       <h4>{props.place.title}</h4>
       <p>{props.place.content}</p>
       <p>{props.place.location}</p>
