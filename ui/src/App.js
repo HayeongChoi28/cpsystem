@@ -60,14 +60,6 @@ function App() {
           path="/"
           element={
             <>
-              <div>
-                <img
-                  className="cafeImage"
-                  alt="cafeImage"
-                  src={"../img/cafe.jpg"}
-                  width="50%"
-                />
-              </div>
               <div className="text">
                 <div className="title">로그인</div>
                 <div className="explanation">
