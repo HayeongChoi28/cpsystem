@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { Form, Navbar, Container, Nav } from "react-bootstrap";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,12 +18,12 @@ import axios from "axios";
 function App() {
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
-    "id": "",
-    "pw": "",
-  })
+    id: "",
+    pw: "",
+  });
 
   const custhandleLogin = () => {
-    console.log(loginData)
+    console.log(loginData);
     axios
       .post("/api/v1/cust/login", {
         custId: loginData.id,
@@ -31,8 +31,12 @@ function App() {
       })
       .then((response) => {
         console.log(response.data);
+        sessionStorage.setItem("cust", JSON.stringify(response.data));
+        // console.log(sessionStorage.getItem("cust"));
+        // sessionStorage.removeItem("cust")
         navigate("/CustomerMain");
-      });
+      })
+      .catch(() => alert("로그인에 실패하였습니다"));
   };
   // const custhandleLogin = () => {
   //   axios
@@ -55,8 +59,8 @@ function App() {
     setLoginData({
       ...loginData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   return (
     <>
@@ -79,13 +83,23 @@ function App() {
                   아이디
                   <br />
                   <br />
-                  <input name="id" type="text" size="20" onChange={(e) => handleInput(e)}  />
+                  <input
+                    name="id"
+                    type="text"
+                    size="20"
+                    onChange={(e) => handleInput(e)}
+                  />
                   <br />
                   <br />
                   비밀번호
                   <br />
                   <br />
-                  <input name="pw" type="password" size="20"  onChange={(e) => handleInput(e)} />
+                  <input
+                    name="pw"
+                    type="password"
+                    size="20"
+                    onChange={(e) => handleInput(e)}
+                  />
                   <br />
                   <br />
                 </div>
@@ -106,7 +120,7 @@ function App() {
                 </button>
                 <button
                   onClick={() => {
-                    custhandleLogin()
+                    custhandleLogin();
                   }}
                   type="button"
                   className="btn btn-dark"

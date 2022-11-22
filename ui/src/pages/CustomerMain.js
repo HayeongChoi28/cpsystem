@@ -28,7 +28,7 @@ function CustomerMain() {
               <div className="container">
                 <div className="row">
                   {place.map((a, i) => {
-                    return <Card place={place[i]} i={i}></Card>;
+                    return <Card key={i} place={place[i]} i={i}></Card>;
                   })}
                 </div>
               </div>
@@ -42,7 +42,7 @@ function CustomerMain() {
 
 function Card(props) {
   return (
-    <div className="col-md-6">
+    <div className="col-md-3">
       <img
         className="cafeImage"
         alt="cafeImage"

@@ -19,11 +19,10 @@ function Save() {
           setCoupon(response.data);
         })
         .catch(() => console.log("실패함"));
-      }
-  }, [])
+    }
+  }, []);
 
   const handleUpdate = () => {
-
     if (custId.length > 0) {
       axios
         .put(`/api/v1/cust`, {
@@ -34,10 +33,8 @@ function Save() {
           navigate(`/save/${custId}/finish`);
         })
         .catch(() => console.log("실패함"));
-      }
-
-   
-  }
+    }
+  };
   return (
     <>
       <div class="nav justify-content-end bg-dark">
