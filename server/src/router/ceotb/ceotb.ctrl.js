@@ -1,3 +1,5 @@
+import bcrypt from "bcrypt";
+
 export const read = async (ctx) => {
   try {
     const { db } = ctx;
@@ -16,10 +18,12 @@ export const create = async (ctx) => {
     const { db } = ctx;
     const { ceoId, ceoPw, ceoPt } = ctx.request.body;
 
+    const hashedPassword = await bcrypt.hashSync(ceoPw, 10);
+
     const stmt = db.prepare(
       "INSERT INTO ceotb (ceoId, ceoPw, ceoPt) VALUES (?, ?, ?)",
     );
-    stmt.run(ceoId, ceoPw, ceoPt);
+    stmt.run(ceoId, hashedPassword, ceoPt);
     stmt.finalize();
   } catch (e) {
     console.log(e);
@@ -65,10 +69,22 @@ export const ceologin = async (ctx) => {
     const { db } = ctx;
     const { ceoId, ceoPw } = ctx.request.body;
 
-    const sql = "SELECT ceoId, ceoPw, ceoPt FROM ceotb where ceoId=? and ceoPw=?";
-    const result = await db.get(sql, [ceoId, ceoPw]);
-    ctx.status = 200;
-    ctx.body = result;
+    const sql = "SELECT ceoId, ceoPw, ceoPt FROM ceotb where ceoId=?";
+    const result = await db.get(sql, [ceoId]);
+
+    if (result.ceoId && result.ceoPw) {
+      if (bcrypt.compareSync(ceoPw, result.ceoPw)) {
+        ctx.status = 200;
+        ctx.body = {
+          ceoId: result.ceoId,
+          ceoPt: result.ceoPt,
+        };
+      } else {
+        ctx.status = 404;
+      }
+    } else {
+      ctx.status = 404;
+    }
   } catch (e) {
     console.log(e);
   }
