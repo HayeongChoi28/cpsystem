@@ -1,5 +1,6 @@
 import KoaRouter from "koa-router";
 import ceotbRouter from "./ceotb";
+import custtbRouter from "./custtb";
 // import userRouter from "./user";
 // import authenticationRouter from "./authentication";
 // import itemRouter from "./item";
@@ -10,6 +11,7 @@ const router = new KoaRouter({
 });
 
 router.use("/ceotb", ceotbRouter.routes());
+router.use("/cust", custtbRouter.routes());
 // router.use("/users", userRouter.routes());
 // router.use("/items", itemRouter.routes());
 // router.use("/authentication", authenticationRouter.routes());

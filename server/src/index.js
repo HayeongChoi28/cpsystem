@@ -36,7 +36,7 @@ app.use(
         keepExtensions: true,
       },
     }),
-  ])
+  ]),
 );
 
 app.use(routerRoutesMd(Router)).use(routerAllowMethodsMd(Router));

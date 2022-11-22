@@ -60,9 +60,11 @@ export const remove = async (ctx) => {
 
   ctx.status = 200;
 };
-/*
+
 export const custlogin = async (ctx) => {
   try {
+    console.log("herere");
+
     const { db } = ctx;
     const { custId, custPw, custPt } = ctx.request.body;
 
@@ -88,4 +90,3 @@ export const custid = async (ctx) => {
     console.log(e);
   }
 };
-*/
