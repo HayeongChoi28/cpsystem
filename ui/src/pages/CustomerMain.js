@@ -1,20 +1,44 @@
-import React from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Link, useNavigate, useParams } from "react-router-dom";
 import { Form, Navbar, Container, Nav } from "react-bootstrap";
-import { useState } from "react";
 import placedata from "../placedata.js";
 import data from "../Ceo_data.js";
+import axios from "axios";
 
 function CustomerMain() {
   let [place] = useState(placedata);
-  let [coupon] = useState(data);
+  let [coupon, setCoupon] = useState(data);
+  const [loading, setLoading] = useState(true);
   let navigate = useNavigate();
+
+  const logout = () => {
+    console.log(sessionStorage.getItem("cust"));
+    sessionStorage.removeItem("cust");
+  };
+
+  let { custId } = useParams();
+
+  useEffect(() => {
+    if (custId.length > 0) {
+      axios
+        .get(`/api/v1/cust/login/${custId}`)
+        .then((response) => {
+          setCoupon(response.data);
+        })
+        .catch(() => console.log("실패함"))
+        .finally(() => setLoading(false));
+    }
+  }, []);
+
   return (
     <div className="App">
       <div class="nav justify-content-end bg-dark">
         <Navbar expand="lg" variant="dark" bg="dark">
           <Container>
-            <Navbar.Brand>보유쿠폰 {coupon[0].cp}개</Navbar.Brand>
+            <Navbar.Brand>보유쿠폰 {coupon.custPt} 개</Navbar.Brand>
+            <Navbar.Brand onClick={(e) => logout(e)} href="/">
+              Logout
+            </Navbar.Brand>
           </Container>
         </Navbar>
       </div>

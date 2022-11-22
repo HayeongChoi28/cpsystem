@@ -82,19 +82,25 @@ function App() {
 
   return (
     <>
-      <div className="nav justify-content-end bg-dark">
+      {/* <div className="nav justify-content-end bg-dark">
         <Navbar expand="lg" variant="dark" bg="dark">
           <Container>
-            <Navbar.Brand href="/">Coupon</Navbar.Brand>
+            <Navbar.Brand href="/">LogOut</Navbar.Brand>
           </Container>
         </Navbar>
-      </div>
-
+      </div> */}
       <Routes>
         <Route
           path="/"
           element={
             <>
+              <div class="nav justify-content-end bg-dark">
+                <Navbar expand="lg" variant="dark" bg="dark">
+                  <Container>
+                    <Navbar.Brand>Coupon</Navbar.Brand>
+                  </Container>
+                </Navbar>
+              </div>
               <div className="text">
                 <div className="title">로그인</div>
                 <div className="explanation">
