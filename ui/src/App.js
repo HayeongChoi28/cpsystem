@@ -109,9 +109,9 @@ function App() {
         <Route path="/checkpw" element={<Checkpw />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/choose" element={<Choose />} />
-        <Route path="/save" element={<Save />} />
-        <Route path="/save/finish" element={<SaveFin />} />
-        <Route path="/use" element={<Use />} />
+        <Route path="/save/:custId" element={<Save />} />
+        <Route path="/save/:custId/finish" element={<SaveFin />} />
+        <Route path="/use/:custId" element={<Use />} />
         <Route path="/use/finish" element={<UseFin />} />
         <Route path="*" element={<div>404error</div>} />
       </Routes>

@@ -7,21 +7,24 @@ import axios from "axios";
 
 function CeoMain() {
   const navigate = useNavigate();
-  // const [checkId, setcheckId] = useState("");
+  const [checkId, setcheckId] = useState("");
   // const [coupon] = useState(data);
   // const message = "다시 입력해주세요";
+  console.log(checkId)
   const custhandleLogin = () => {
+    if (checkId.length > 0) {
     axios
-      .post("api/v1/cust/login", { custId: "a" })
+      .get(`/api/v1/cust/${checkId}`)
       .then((response) => {
         console.log(response.data);
         if (response.data.custPt >= 10) {
-          navigate("/use");
+          navigate(`/use/${checkId}`);
         } else {
-          navigate("/save");
+          navigate(`/save/${checkId}`);
         }
       })
       .catch(() => console.log("실패함"));
+    }
   };
 
   return (
@@ -49,10 +52,7 @@ function CeoMain() {
       <div className="explanation">쿠폰 적립을 위해 번호를 입력해 주세요</div>
       <div className="phoneNumber">
         <input
-          // onClicke={(e) => {
-          // setcheckId(e.target.value);
-          // console.log(checkId);
-          // }}
+          onChange={(e) => setcheckId(e.target.value)}
           type="text"
           size="40"
         />
@@ -62,6 +62,7 @@ function CeoMain() {
           onClick={custhandleLogin}
           type="button"
           className="btn btn-dark"
+          disabled={checkId.length <= 0}
         >
           확인
         </button>

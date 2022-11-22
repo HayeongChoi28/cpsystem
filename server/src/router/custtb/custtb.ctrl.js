@@ -32,12 +32,12 @@ export const create = async (ctx) => {
 export const update = async (ctx) => {
   try {
     const { db } = ctx;
-    const { custId, custPw, custPt } = ctx.request.body;
+    const { custId, custPt } = ctx.request.body;
 
     const stmt = db.prepare(
-      "UPDATE custtb SET custPw =? , custPt=? where custId = ?",
+      "UPDATE custtb SET custPt=? where custId = ?",
     );
-    stmt.run(custPw, custPt, custId);
+    stmt.run(custPt, custId);
     stmt.finalize();
   } catch (e) {
     console.log(e);
@@ -63,8 +63,6 @@ export const remove = async (ctx) => {
 
 export const custlogin = async (ctx) => {
   try {
-    console.log("herere");
-
     const { db } = ctx;
     const { custId, custPw, custPt } = ctx.request.body;
 
@@ -86,6 +84,21 @@ export const custid = async (ctx) => {
     const result = await db.get(sql, [custId, custPt]);
     ctx.status = 200;
     ctx.body = result;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const readByCustId = async (ctx) => {
+  try {
+    const { db } = ctx;
+    const { custId } = ctx.params;
+
+    const sql = "SELECT custId, custPt FROM custtb where custId=?";
+    const result = await db.get(sql, [custId]);
+    ctx.status = 200;
+    ctx.body = result;
+    console.log(result);
   } catch (e) {
     console.log(e);
   }

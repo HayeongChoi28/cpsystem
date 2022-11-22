@@ -1,12 +1,26 @@
-import React from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, Link, useNavigate, useParams } from "react-router-dom";
 import { Form, Navbar, Container, Nav } from "react-bootstrap";
 import { useState } from "react";
 import data from "../data.js";
+import axios from "axios";
 
 function Use() {
   let navigate = useNavigate();
   let [coupon] = useState(data);
+  let { custId } = useParams();
+
+  useEffect(() => {
+    if (custId.length > 0) {
+      axios
+        .get(`/api/v1/cust/${custId}`)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch(() => console.log("실패함"));
+      }
+  }, [])
+  
   return (
     <>
       <div class="nav justify-content-end bg-dark">

@@ -1,12 +1,43 @@
-import React from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, Link, useNavigate, useParams } from "react-router-dom";
 import { Form, Navbar, Container, Nav } from "react-bootstrap";
 import { useState } from "react";
 import data from "../data";
+import axios from "axios";
 
 function Save() {
   let navigate = useNavigate();
-  let [coupon] = useState(data);
+  let [coupon, setCoupon] = useState(data);
+
+  let { custId } = useParams();
+
+  useEffect(() => {
+    if (custId.length > 0) {
+      axios
+        .get(`/api/v1/cust/${custId}`)
+        .then((response) => {
+          setCoupon(response.data);
+        })
+        .catch(() => console.log("실패함"));
+      }
+  }, [])
+
+  const handleUpdate = () => {
+
+    if (custId.length > 0) {
+      axios
+        .put(`/api/v1/cust`, {
+          custId,
+          custPt: coupon.custPt + 1,
+        })
+        .then((response) => {
+          navigate(`/save/${custId}/finish`);
+        })
+        .catch(() => console.log("실패함"));
+      }
+
+   
+  }
   return (
     <>
       <div class="nav justify-content-end bg-dark">
@@ -22,7 +53,7 @@ function Save() {
           <div class="explanation">
             현재 보유 쿠폰 <br />
             <br />
-            {coupon[0].cp} 개
+            {coupon.custPt} 개
           </div>
           <div class="explanation">
             적립 쿠폰
@@ -34,7 +65,7 @@ function Save() {
         <div class="Btn">
           <button
             onClick={() => {
-              navigate("/save/finish");
+              handleUpdate();
             }}
             type="button"
             class="btn btn-dark"
