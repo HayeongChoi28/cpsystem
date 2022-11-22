@@ -26,8 +26,19 @@ function CeoMain() {
 
   return (
     <>
-      nav justify-c
-      <div className="ontent-end bg-dark">
+      {/* <div className="ontent-end bg-dark">
+        <Navbar expand="lg" variant="dark" bg="dark">
+          <Container>
+            <Navbar.Brand
+              href="/checkpw"
+              style={"display: flex; justify-content: flex-end"}
+            >
+              Admin
+            </Navbar.Brand>
+          </Container>
+        </Navbar>
+      </div> */}
+      <div class="nav justify-content-end bg-dark">
         <Navbar expand="lg" variant="dark" bg="dark">
           <Container>
             <Navbar.Brand href="/checkpw">Admin</Navbar.Brand>
