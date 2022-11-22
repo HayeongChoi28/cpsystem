@@ -59,7 +59,7 @@ export const remove = async (ctx) => {
 
   ctx.status = 200;
 };
-/*
+
 export const ceologin = async (ctx) => {
   try {
     const { db } = ctx;
@@ -67,6 +67,20 @@ export const ceologin = async (ctx) => {
 
     const sql = "SELECT ceoId, ceoPw, ceoPt FROM ceotb where ceoId=? and ceoPw=?";
     const result = await db.get(sql, [ceoId, ceoPw]);
+    ctx.status = 200;
+    ctx.body = result;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const custid = async (ctx) => { // 쿠폰을 얻기 위한 고객의 id입력폼-->여기서 사용할 테이블은 customer_table임
+  try {
+    const { db } = ctx;
+    const { custId, custPt } = ctx.request.body;
+
+    const sql = "SELECT custId, custPt FROM custtb where custId=?";
+    const result = await db.get(sql, [custId, custPt]);
     ctx.status = 200;
     ctx.body = result;
   } catch (e) {
@@ -86,4 +100,4 @@ export const ceologincheck = async (ctx) => {
   } catch (e) {
     console.log(e);
   }
-}; */
+};
