@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Navbar, Container, Nav } from "react-bootstrap";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,18 +17,23 @@ import axios from "axios";
 
 function App() {
   const navigate = useNavigate();
+  const [loginData, setLoginData] = useState({
+    "id": "",
+    "pw": "",
+  })
 
-  // const custhandleLogin = () => {
-  //   axios
-  //     .post("/api/v1/cust/login", {
-  //       ceoId: "a-ceo",
-  //       ceoPw: "12345",
-  //     })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       navigate("/CustomerMain");
-  //     });
-  // };
+  const custhandleLogin = () => {
+    console.log(loginData)
+    axios
+      .post("/api/v1/cust/login", {
+        custId: loginData.id,
+        custPw: loginData.pw,
+      })
+      .then((response) => {
+        console.log(response.data);
+        navigate("/CustomerMain");
+      });
+  };
   // const custhandleLogin = () => {
   //   axios
   //     .post("/api/v1/ceo/login", {
@@ -45,6 +50,14 @@ function App() {
   //       }
   //     });
   // };
+
+  const handleInput = (e) => {
+    setLoginData({
+      ...loginData,
+      [e.target.name]: e.target.value,
+    })
+  }
+
   return (
     <>
       <div className="nav justify-content-end bg-dark">
@@ -66,13 +79,13 @@ function App() {
                   아이디
                   <br />
                   <br />
-                  <input type="text" size="20" />
+                  <input name="id" type="text" size="20" onChange={(e) => handleInput(e)}  />
                   <br />
                   <br />
                   비밀번호
                   <br />
                   <br />
-                  <input type="text" size="20" />
+                  <input name="pw" type="password" size="20"  onChange={(e) => handleInput(e)} />
                   <br />
                   <br />
                 </div>
@@ -87,16 +100,17 @@ function App() {
                   // onClick={custhandleLogin}
                   type="button"
                   className="btn btn-dark"
+                  disabled={loginData.id.length <= 0 || loginData.pw <= 0}
                 >
                   사장님로그인
                 </button>
                 <button
                   onClick={() => {
-                    //id, pw 체크 후 맞으면 customerMain으로 넘어가게
-                    navigate("./CustomerMain");
+                    custhandleLogin()
                   }}
                   type="button"
                   className="btn btn-dark"
+                  disabled={loginData.id.length <= 0 || loginData.pw <= 0}
                 >
                   사용자로그인
                 </button>
