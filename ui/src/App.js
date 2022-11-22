@@ -38,6 +38,24 @@ function App() {
       })
       .catch(() => alert("로그인에 실패하였습니다"));
   };
+
+  // const ceohandleLogin = () => {
+  //   console.log(loginData);
+  //   axios
+  //     .post("/api/v1/ceotb/login", {
+  //       ceoId: loginData.id,
+  //       ceoPw: loginData.pw,
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       sessionStorage.setItem("ceo", JSON.stringify(response.data));
+  //       // console.log(sessionStorage.getItem("ceo"));
+  //       // sessionStorage.removeItem("ceo")
+  //       navigate("/CeoMain");
+  //     })
+  //     .catch(() => alert("로그인에 실패하였습니다"));
+  // };
+
   // const custhandleLogin = () => {
   //   axios
   //     .post("/api/v1/ceo/login", {
@@ -108,10 +126,9 @@ function App() {
               <div className="Btn">
                 <button
                   onClick={() => {
-                    // 가현 : id, pw 체크 후 맞으면 ceoMain으로 넘어가게
                     navigate("./CeoMain");
                   }}
-                  // onClick={custhandleLogin}
+                  // onClick={ceohandleLogin}
                   type="button"
                   className="btn btn-dark"
                   disabled={loginData.id.length <= 0 || loginData.pw <= 0}

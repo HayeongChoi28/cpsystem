@@ -59,6 +59,18 @@ let placedata = [
     placeContent: "카페",
     placeLocation: "서울 노원구 화랑로 51가길 20",
   },
+  {
+    placeId: "placeaaa",
+    placeTitle: "홀리몰리 베이글리",
+    placeContent: "베이커리",
+    placeLocation: "서울 노원구 화랑로51가길 21-19",
+  },
+  {
+    placeId: "placebbb",
+    placeTitle: "북카페다락",
+    placeContent: "북카페",
+    placeLocation: "서울 노원구 화랑로51가길 3",
+  },
 ];
 
 export default placedata;
