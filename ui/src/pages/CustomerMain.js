@@ -46,12 +46,12 @@ function Card(props) {
       <img
         className="cafeImage"
         alt="cafeImage"
-        src={"../img/cafe" + props.i + ".jpg"}
+        src={"/img/cafe" + props.i + ".jpg"}
         width="80%"
       />
-      <h4>{props.place.title}</h4>
-      <p>{props.place.content}</p>
-      <p>{props.place.location}</p>
+      <h4>{props.place.placeTitle}</h4>
+      <p>{props.place.placeContent}</p>
+      <p>{props.place.placeLocation}</p>
     </div>
   );
 }
