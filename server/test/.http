@@ -100,3 +100,21 @@ Content-Type: application/json
 
 
 GET {{BASEURL}}/authentication/logout
+
+
+POST {{BASEURL}}/cust
+Content-Type: application/json
+
+{
+  "custId": "aaaa",
+  "custPw": "1234",
+  "custPt": 0
+}
+
+POST {{BASEURL}}/cust/login
+Content-Type: application/json
+
+{
+  "custId": "aaaa",
+  "custPw": "1234"
+}

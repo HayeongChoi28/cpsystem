@@ -1,3 +1,5 @@
+import bcrypt from "bcrypt";
+
 // custtb에 custId, custPw, custPt
 export const read = async (ctx) => {
   try {
@@ -17,10 +19,12 @@ export const create = async (ctx) => {
     const { db } = ctx;
     const { custId, custPw, custPt } = ctx.request.body;
 
+    const hashedPassword = await bcrypt.hashSync(custPw, 10);
+
     const stmt = db.prepare(
       "INSERT INTO custtb (custId, custPw, custPt) VALUES (?, ?, ?)",
     );
-    stmt.run(custId, custPw, custPt);
+    stmt.run(custId, hashedPassword, custPt);
     stmt.finalize();
   } catch (e) {
     console.log(e);
@@ -64,12 +68,24 @@ export const remove = async (ctx) => {
 export const custlogin = async (ctx) => {
   try {
     const { db } = ctx;
-    const { custId, custPw, custPt } = ctx.request.body;
+    const { custId, custPw } = ctx.request.body;
 
-    const sql = "SELECT custId, custPw, custPt FROM custtb where custId=? and custPw=?";
-    const result = await db.get(sql, [custId, custPw, custPt]);
-    ctx.status = 200;
-    ctx.body = result;
+    const sql = "SELECT custId, custPw, custPt FROM custtb where custId=?";
+    const result = await db.get(sql, [custId]);
+
+    if (result.custId && result.custPw) {
+      if (bcrypt.compareSync(custPw, result.custPw)) {
+        ctx.status = 200;
+        ctx.body = {
+          custId: result.custId,
+          custPt: result.custPt,
+        };
+      } else {
+        ctx.status = 404;
+      }
+    } else {
+      ctx.status = 404;
+    }
   } catch (e) {
     console.log(e);
   }
