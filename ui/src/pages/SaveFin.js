@@ -21,9 +21,8 @@ function SaveFin() {
         })
         .catch(() => console.log("실패함"))
         .finally(() => setLoading(false));
-      }
-  }, [])
-
+    }
+  }, []);
 
   return (
     <>
@@ -34,23 +33,25 @@ function SaveFin() {
           </Container>
         </Navbar>
       </div>
-      {loading  ? (<div>...loading</div>) : (
+      {loading ? (
+        <div>...loading</div>
+      ) : (
         <>
-        <div class="title">적립되었습니다</div>
-      <div class="title">현재 보유 쿠폰은 {coupon.custPt}개 입니다</div>
-      <div class="Btn">
-        <button
-          onClick={() => {
-            navigate("/");
-          }}
-          type="button"
-          class="btn btn-dark"
-        >
-          확인
-        </button>
-      </div>
-      </>
-      )}      
+          <div class="title">적립되었습니다</div>
+          <div class="title">현재 보유 쿠폰은 {coupon.custPt}개 입니다</div>
+          <div class="Btn">
+            <button
+              onClick={() => {
+                navigate("/ceomain");
+              }}
+              type="button"
+              class="btn btn-dark"
+            >
+              확인
+            </button>
+          </div>
+        </>
+      )}
     </>
   );
 }

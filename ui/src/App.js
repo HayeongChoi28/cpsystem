@@ -163,7 +163,7 @@ function App() {
         <Route path="/save/:custId" element={<Save />} />
         <Route path="/save/:custId/finish" element={<SaveFin />} />
         <Route path="/use/:custId" element={<Use />} />
-        <Route path="/use/finish" element={<UseFin />} />
+        <Route path="/use/:custId/finish" element={<UseFin />} />
         <Route path="*" element={<div>404error</div>} />
       </Routes>
     </>

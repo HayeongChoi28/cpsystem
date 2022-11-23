@@ -8,7 +8,6 @@ import axios from "axios";
 function Save() {
   let navigate = useNavigate();
   let [coupon, setCoupon] = useState(data);
-
   let { custId } = useParams();
 
   useEffect(() => {

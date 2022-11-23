@@ -7,7 +7,7 @@ import axios from "axios";
 
 function Use() {
   let navigate = useNavigate();
-  let [coupon] = useState(data);
+  let [coupon, setCoupon] = useState(data);
   let { custId } = useParams();
 
   useEffect(() => {
@@ -15,12 +15,26 @@ function Use() {
       axios
         .get(`/api/v1/cust/${custId}`)
         .then((response) => {
-          console.log(response.data);
+          setCoupon(response.data);
         })
         .catch(() => console.log("실패함"));
-      }
-  }, [])
-  
+    }
+  }, []);
+
+  const handleUpdate = () => {
+    if (custId.length > 0) {
+      axios
+        .put(`/api/v1/cust`, {
+          custId,
+          custPt: coupon.custPt - 10,
+        })
+        .then((response) => {
+          navigate(`/use/${custId}/finish`);
+        })
+        .catch(() => console.log("실패함"));
+    }
+  };
+
   return (
     <>
       <div class="nav justify-content-end bg-dark">
@@ -36,7 +50,7 @@ function Use() {
           <div class="explanation">
             현재 보유 쿠폰 <br />
             <br />
-            {coupon[1].cp} 개
+            {coupon.custPt} 개
           </div>
           <div class="explanation">
             사용 쿠폰
@@ -48,7 +62,7 @@ function Use() {
         <div class="Btn">
           <button
             onClick={() => {
-              navigate("/use/finish");
+              handleUpdate();
             }}
             type="button"
             class="btn btn-dark"
