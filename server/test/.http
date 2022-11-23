@@ -106,7 +106,7 @@ POST {{BASEURL}}/cust
 Content-Type: application/json
 
 {
-  "custId": "aaaa",
+  "custId": "cccc",
   "custPw": "1234",
   "custPt": 0
 }
@@ -115,24 +115,24 @@ POST {{BASEURL}}/cust/login
 Content-Type: application/json
 
 {
-  "custId": "aaaa",
+  "custId": "cccc",
   "custPw": "1234"
 }
 
 
-# POST {{BASEURL}}/ceo
-# Content-Type: application/json
+POST {{BASEURL}}/ceotb
+Content-Type: application/json
 
-# {
-#   "ceoId": "ceo1",
-#   "ceoPw": "1234",
-#   "ceoPt": 0
-# }
+{
+  "ceoId": "ceo1",
+  "ceoPw": "1234",
+  "ceoPt": 0
+}
 
-# POST {{BASEURL}}/ceo/login
-# Content-Type: application/json
+POST {{BASEURL}}/ceotb/login
+Content-Type: application/json
 
-# {
-#   "ceoId": "ceo1",
-#   "ceoPw": "1234"
-# }
+{
+  "ceoId": "ceo1",
+  "ceoPw": "1234"
+}

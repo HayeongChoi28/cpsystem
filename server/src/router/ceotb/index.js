@@ -8,8 +8,8 @@ router.post("/", ceotbController.create);
 router.put("/", ceotbController.update);
 router.delete("/:ceoId", ceotbController.remove);
 
-router.post("/login", ceotbController.ceologin);
-router.post("/ceoid", ceotbController.ceoid);
+router.get("/login", ceotbController.ceologin);
+router.get("/ceoid", ceotbController.ceoid);
 
 router.get("/:ceoId", ceotbController.readByCeoId);
 

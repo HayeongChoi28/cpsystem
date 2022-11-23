@@ -9,7 +9,7 @@ router.put("/", custtbController.update);
 router.delete("/:custId", custtbController.remove);
 
 router.post("/login", custtbController.custlogin);
-router.post("/custid", custtbController.custid);
+// router.get("/custid", custtbController.custid);
 
 router.get("/:custId", custtbController.readByCustId);
 router.get("/:custPt", custtbController.readByCustPt);
