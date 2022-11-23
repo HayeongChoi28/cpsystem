@@ -32,15 +32,30 @@ export const create = async (ctx) => {
   ctx.status = 200;
 };
 
+// export const update = async (ctx) => {
+//   try {
+//     const { db } = ctx;
+//     const { ceoId, ceoPw, ceoPt } = ctx.request.body;
+
+//     const stmt = db.prepare(
+//       "UPDATE ceotb SET ceoPw =? , ceoPt=? where ceoId = ?"
+//     );
+//     stmt.run(ceoPw, ceoPt, ceoId);
+//     stmt.finalize();
+//   } catch (e) {
+//     console.log(e);
+//   }
+
+//   ctx.status = 200;
+// };
+
 export const update = async (ctx) => {
   try {
     const { db } = ctx;
-    const { ceoId, ceoPw, ceoPt } = ctx.request.body;
+    const { ceoId, ceoPt } = ctx.request.body;
 
-    const stmt = db.prepare(
-      "UPDATE ceotb SET ceoPw =? , ceoPt=? where ceoId = ?",
-    );
-    stmt.run(ceoPw, ceoPt, ceoId);
+    const stmt = db.prepare("UPDATE ceotb SET ceoPt=? where ceoId = ?");
+    stmt.run(ceoPt, ceoId);
     stmt.finalize();
   } catch (e) {
     console.log(e);
@@ -90,13 +105,13 @@ export const ceologin = async (ctx) => {
   }
 };
 
-export const custid = async (ctx) => { // 쿠폰을 얻기 위한 고객의 id입력폼-->여기서 사용할 테이블은 customer_table임
+export const ceoid = async (ctx) => {
   try {
     const { db } = ctx;
-    const { custId, custPt } = ctx.request.body;
+    const { ceoId, ceoPt } = ctx.request.body;
 
-    const sql = "SELECT custId, custPt FROM custtb where custId=?";
-    const result = await db.get(sql, [custId, custPt]);
+    const sql = "SELECT ceoId, ceoPt FROM ceotb where ceoId=?";
+    const result = await db.get(sql, [ceoId, ceoPt]);
     ctx.status = 200;
     ctx.body = result;
   } catch (e) {
@@ -104,15 +119,32 @@ export const custid = async (ctx) => { // 쿠폰을 얻기 위한 고객의 id�
   }
 };
 
-export const ceologincheck = async (ctx) => {
+// 이것도 일단 주석처리 해놓고 readby함수 cust거 복붙해왔어
+// export const ceologincheck = async (ctx) => {
+//   try {
+//     const { db } = ctx;
+//     const { ceoId, ceoPw, ceoPt } = ctx.request.body;
+
+//     const sql =
+//       "SELECT ceoId, ceoPw, ceoPt FROM ceotb where ceoId=? and ceoPw=?";
+//     const result = await db.get(sql, [ceoId, ceoPw, ceoPt]);
+//     ctx.status = 200;
+//     ctx.body = result;
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };
+
+export const readByCeoId = async (ctx) => {
   try {
     const { db } = ctx;
-    const { ceoId, ceoPw, ceoPt } = ctx.request.body;
+    const { ceoId } = ctx.params;
 
-    const sql = "SELECT ceoId, ceoPw, ceoPt FROM ceotb where ceoId=? and ceoPw=?";
-    const result = await db.get(sql, [ceoId, ceoPw, ceoPt]);
+    const sql = "SELECT ceoId, ceoPt FROM ceotb where ceoId=?";
+    const result = await db.get(sql, [ceoId]);
     ctx.status = 200;
     ctx.body = result;
+    console.log(result);
   } catch (e) {
     console.log(e);
   }

@@ -4,7 +4,6 @@ import bcrypt from "bcrypt";
 export const read = async (ctx) => {
   try {
     const { db } = ctx;
-
     const sql = "SELECT custId, custPw, custPt FROM custtb";
     const result = await db.all(sql);
     ctx.status = 200;
@@ -63,7 +62,7 @@ export const remove = async (ctx) => {
   ctx.status = 200;
 };
 
-export const custlogin = async (ctx) => {
+export const custlogin = async (ctx) => { // customer 로그인할 때
   try {
     const { db } = ctx;
     const { custId, custPw } = ctx.request.body;
@@ -88,7 +87,7 @@ export const custlogin = async (ctx) => {
     console.log(e);
   }
 };
-
+/*
 export const custid = async (ctx) => {
   try {
     const { db } = ctx;
@@ -101,15 +100,30 @@ export const custid = async (ctx) => {
   } catch (e) {
     console.log(e);
   }
-};
+}; */
 
-export const readByCustId = async (ctx) => {
+export const readByCustId = async (ctx) => { // customer이 쿠폰 받기 위해 아이디 입력할 때.
   try {
     const { db } = ctx;
     const { custId } = ctx.params;
 
-    const sql = "SELECT custId, custPt FROM custtb where custId=?";
+    const sql = "SELECT custId, custPt FROM custtb where custId=? and custPw=?";
     const result = await db.get(sql, [custId]);
+    ctx.status = 200;
+    ctx.body = result;
+    console.log(result);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const readByCustPt = async (ctx) => { // 카페 리스트 상단에 customer의 쿠폰 갯수 보여주기
+  try {
+    const { db } = ctx;
+    const { custPt } = ctx.params;
+
+    const sql = "SELECT custId, custPt FROM custtb where custId=?";
+    const result = await db.get(sql, [custPt]);
     ctx.status = 200;
     ctx.body = result;
     console.log(result);
