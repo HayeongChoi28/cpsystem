@@ -21,7 +21,7 @@ export const create = async (ctx) => {
     const hashedPassword = await bcrypt.hashSync(ceoPw, 10);
 
     const stmt = db.prepare(
-      "INSERT INTO ceotb (ceoId, ceoPw, ceoPt) VALUES (?, ?, ?)"
+      "INSERT INTO ceotb (ceoId, ceoPw, ceoPt) VALUES (?, ?, ?)",
     );
     stmt.run(ceoId, hashedPassword, ceoPt);
     stmt.finalize();
@@ -104,23 +104,6 @@ export const ceologin = async (ctx) => {
     console.log(e);
   }
 };
-
-// 이거 일단 주석처리 해 뒀는데 여기에 왜 custid가 들어가는거야..?
-// customer_table은 또 머지..???
-// export const custid = async (ctx) => {
-//   // 쿠폰을 얻기 위한 고객의 id입력폼-->여기서 사용할 테이블은 customer_table임
-//   try {
-//     const { db } = ctx;
-//     const { custId, custPt } = ctx.request.body;
-
-//     const sql = "SELECT custId, custPt FROM custtb where custId=?";
-//     const result = await db.get(sql, [custId, custPt]);
-//     ctx.status = 200;
-//     ctx.body = result;
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
 
 export const ceoid = async (ctx) => {
   try {
