@@ -107,7 +107,7 @@ export const readByCustId = async (ctx) => { // customer이 쿠폰 받기 위해
     const { db } = ctx;
     const { custId } = ctx.params;
 
-    const sql = "SELECT custId, custPt FROM custtb where custId=? and custPw=?";
+    const sql = "SELECT custId, custPt FROM custtb where custId=?";
     const result = await db.get(sql, [custId]);
     ctx.status = 200;
     ctx.body = result;

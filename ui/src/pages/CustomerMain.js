@@ -8,9 +8,10 @@ import axios from "axios";
 function CustomerMain() {
   let [place] = useState(placedata);
   let [coupon, setCoupon] = useState(data);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
   let navigate = useNavigate();
 
+  /*
   const logout = () => {
     console.log(sessionStorage.getItem("cust"));
     sessionStorage.removeItem("cust");
@@ -28,11 +29,11 @@ function CustomerMain() {
         .catch(() => console.log("실패함"))
         .finally(() => setLoading(false));
     }
-  }, []);
+  }, []);*/
 
   return (
     <div className="App">
-      <div class="nav justify-content-end bg-dark">
+      {/* <div class="nav justify-content-end bg-dark">
         <Navbar expand="lg" variant="dark" bg="dark">
           <Container>
             <Navbar.Brand>보유쿠폰 {coupon.custPt} 개</Navbar.Brand>
@@ -41,7 +42,7 @@ function CustomerMain() {
             </Navbar.Brand>
           </Container>
         </Navbar>
-      </div>
+      </div> */}
 
       <Routes>
         <Route
