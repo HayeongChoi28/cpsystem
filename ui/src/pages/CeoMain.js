@@ -10,23 +10,26 @@ function CeoMain() {
   const [checkId, setcheckId] = useState("");
   // const [coupon] = useState(data);
   // const message = "다시 입력해주세요";
-  console.log(checkId)
+  console.log(checkId);
   const custhandleLogin = () => {
     if (checkId.length > 0) {
-    axios
-      .get(`/api/v1/cust/${checkId}`)
-      .then((response) => {
-        console.log(response.data);
-        if (response.data.custPt >= 10) {
-          navigate(`/use/${checkId}`);
-        } else {
-          navigate(`/save/${checkId}`);
-        }
-      })
-      .catch(() => console.log("실패함"));
+      axios
+        .get(`/api/v1/cust/${checkId}`)
+        .then((response) => {
+          console.log(response.data);
+          if (response.data.custPt >= 10) {
+            navigate(`/use/${checkId}`);
+          } else {
+            navigate(`/save/${checkId}`);
+          }
+        })
+        .catch(() => alert("적립할 수 없는 번호입니다"));
     }
   };
-
+  const logout = () => {
+    console.log(sessionStorage.getItem("cust"));
+    sessionStorage.removeItem("cust");
+  };
   return (
     <>
       {/* <div className="ontent-end bg-dark">
@@ -45,6 +48,9 @@ function CeoMain() {
         <Navbar expand="lg" variant="dark" bg="dark">
           <Container>
             <Navbar.Brand href="/checkpw">Admin</Navbar.Brand>
+            <Navbar.Brand onClick={(e) => logout(e)} href="/">
+              Logout
+            </Navbar.Brand>
           </Container>
         </Navbar>
       </div>

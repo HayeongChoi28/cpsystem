@@ -21,7 +21,7 @@ export const create = async (ctx) => {
     const hashedPassword = await bcrypt.hashSync(custPw, 10);
 
     const stmt = db.prepare(
-      "INSERT INTO custtb (custId, custPw, custPt) VALUES (?, ?, ?)",
+      "INSERT INTO custtb (custId, custPw, custPt) VALUES (?, ?, ?)"
     );
     stmt.run(custId, hashedPassword, custPt);
     stmt.finalize();
