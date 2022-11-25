@@ -29,7 +29,7 @@ function SaveFin() {
       <div class="nav justify-content-end bg-dark">
         <Navbar expand="lg" variant="dark" bg="dark">
           <Container>
-            <Navbar.Brand href="/admin">Admin</Navbar.Brand>
+            <Navbar.Brand>Coupon</Navbar.Brand>
           </Container>
         </Navbar>
       </div>

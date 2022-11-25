@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { Form, Navbar, Container, Nav } from "react-bootstrap";
 import data from "../data";
@@ -8,6 +8,7 @@ import axios from "axios";
 function CeoMain() {
   const navigate = useNavigate();
   const [checkId, setcheckId] = useState("");
+  let { ceoId } = useParams();
   // const [coupon] = useState(data);
   // const message = "다시 입력해주세요";
   console.log(checkId);
@@ -30,24 +31,17 @@ function CeoMain() {
     console.log(sessionStorage.getItem("ceotb"));
     sessionStorage.removeItem("ceotb");
   };
+
+  const adminClick = (e) => {
+    navigate(`/admin/${ceoId}`);
+  };
+
   return (
     <>
-      {/* <div className="ontent-end bg-dark">
-        <Navbar expand="lg" variant="dark" bg="dark">
-          <Container>
-            <Navbar.Brand
-              href="/checkpw"
-              style={"display: flex; justify-content: flex-end"}
-            >
-              Admin
-            </Navbar.Brand>
-          </Container>
-        </Navbar>
-      </div> */}
       <div class="nav justify-content-end bg-dark">
         <Navbar expand="lg" variant="dark" bg="dark">
           <Container>
-            <Navbar.Brand href="/admin">Admin</Navbar.Brand>
+            <Navbar.Brand onClick={(e) => adminClick(e)}>Admin</Navbar.Brand>
             <Navbar.Brand onClick={(e) => logout(e)} href="/">
               Logout
             </Navbar.Brand>

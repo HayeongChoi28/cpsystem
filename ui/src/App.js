@@ -32,10 +32,11 @@ function App() {
       })
       .then((response) => {
         console.log(response.data);
+        console.log(response.data.custId);
+        navigate(`/customermain/${response.data.custId}`);
         sessionStorage.setItem("cust", JSON.stringify(response.data));
         // console.log(sessionStorage.getItem("cust"));
         // sessionStorage.removeItem("cust")
-        navigate(`/customermain/${custId}`);
       })
       .catch(() => alert("로그인에 실패하였습니다"));
   };
@@ -52,7 +53,7 @@ function App() {
         sessionStorage.setItem("ceotb", JSON.stringify(response.data));
         // console.log(sessionStorage.getItem("ceotb"));
         // sessionStorage.removeItem("ceotb")
-        navigate(`/ceomain/${custId}`);
+        navigate(`/ceomain/${response.data.ceoId}`);
       })
       .catch(() => alert("로그인에 실패하였습니다"));
   };
@@ -158,7 +159,7 @@ function App() {
         <Route path="/ceomain/:ceoId" element={<CeoMain />} />
         <Route path="/customermain/:custId" element={<CustomerMain />} />
         <Route path="/checkpw" element={<Checkpw />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/:ceoId" element={<Admin />} />
         <Route path="/choose" element={<Choose />} />
         <Route path="/save/:custId" element={<Save />} />
         <Route path="/save/:custId/finish" element={<SaveFin />} />

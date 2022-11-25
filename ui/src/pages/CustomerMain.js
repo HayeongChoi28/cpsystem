@@ -7,7 +7,6 @@ import axios from "axios";
 
 function CustomerMain() {
   let [place] = useState(placedata);
-  useParams();
   //const [loading, setLoading] = useState(true);
   let navigate = useNavigate();
   let { custId } = useParams();

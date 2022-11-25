@@ -28,7 +28,7 @@ function UseFin() {
       <div class="nav justify-content-end bg-dark">
         <Navbar expand="lg" variant="dark" bg="dark">
           <Container>
-            <Navbar.Brand href="/checkpw">Admin</Navbar.Brand>
+            <Navbar.Brand>Coupon</Navbar.Brand>
           </Container>
         </Navbar>
       </div>
@@ -42,7 +42,7 @@ function UseFin() {
           <div class="Btn">
             <button
               onClick={() => {
-                navigate("/ceomain");
+                navigate(`/ceomain/${custId}`);
               }}
               type="button"
               class="btn btn-dark"
