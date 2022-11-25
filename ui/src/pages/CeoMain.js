@@ -27,8 +27,8 @@ function CeoMain() {
     }
   };
   const logout = () => {
-    console.log(sessionStorage.getItem("cust"));
-    sessionStorage.removeItem("cust");
+    console.log(sessionStorage.getItem("ceotb"));
+    sessionStorage.removeItem("ceotb");
   };
   return (
     <>
@@ -47,7 +47,7 @@ function CeoMain() {
       <div class="nav justify-content-end bg-dark">
         <Navbar expand="lg" variant="dark" bg="dark">
           <Container>
-            <Navbar.Brand href="/checkpw">Admin</Navbar.Brand>
+            <Navbar.Brand href="/admin">Admin</Navbar.Brand>
             <Navbar.Brand onClick={(e) => logout(e)} href="/">
               Logout
             </Navbar.Brand>

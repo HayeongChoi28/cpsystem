@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import { Form, Navbar, Container, Nav } from "react-bootstrap";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, Link, useNavigate, useParams } from "react-router-dom";
 import CeoMain from "./pages/CeoMain";
 import CustomerMain from "./pages/CustomerMain";
 import Choose from "./pages/Choose";
@@ -21,6 +21,7 @@ function App() {
     id: "",
     pw: "",
   });
+  let { custId } = useParams();
 
   const custhandleLogin = () => {
     console.log(loginData);
@@ -34,27 +35,27 @@ function App() {
         sessionStorage.setItem("cust", JSON.stringify(response.data));
         // console.log(sessionStorage.getItem("cust"));
         // sessionStorage.removeItem("cust")
-        navigate("/CustomerMain");
+        navigate(`/customermain/${custId}`);
       })
       .catch(() => alert("로그인에 실패하였습니다"));
   };
 
-  // const ceohandleLogin = () => {
-  //   console.log(loginData);
-  //   axios
-  //     .post("/api/v1/ceotb/login", {
-  //       ceoId: loginData.id,
-  //       ceoPw: loginData.pw,
-  //     })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       sessionStorage.setItem("ceo", JSON.stringify(response.data));
-  //       // console.log(sessionStorage.getItem("ceo"));
-  //       // sessionStorage.removeItem("ceo")
-  //       navigate("/CeoMain");
-  //     })
-  //     .catch(() => alert("로그인에 실패하였습니다"));
-  // };
+  const ceohandleLogin = () => {
+    console.log(loginData);
+    axios
+      .post("/api/v1/ceotb/login", {
+        ceoId: loginData.id,
+        ceoPw: loginData.pw,
+      })
+      .then((response) => {
+        console.log(response.data);
+        sessionStorage.setItem("ceotb", JSON.stringify(response.data));
+        // console.log(sessionStorage.getItem("ceotb"));
+        // sessionStorage.removeItem("ceotb")
+        navigate(`/ceomain/${custId}`);
+      })
+      .catch(() => alert("로그인에 실패하였습니다"));
+  };
 
   // const custhandleLogin = () => {
   //   axios
@@ -132,9 +133,8 @@ function App() {
               <div className="Btn">
                 <button
                   onClick={() => {
-                    navigate("./CeoMain");
+                    ceohandleLogin();
                   }}
-                  // onClick={ceohandleLogin}
                   type="button"
                   className="btn btn-dark"
                   disabled={loginData.id.length <= 0 || loginData.pw <= 0}
@@ -155,8 +155,8 @@ function App() {
             </>
           }
         />
-        <Route path="/ceomain" element={<CeoMain />} />
-        <Route path="/customermain" element={<CustomerMain />} />
+        <Route path="/ceomain/:ceoId" element={<CeoMain />} />
+        <Route path="/customermain/:custId" element={<CustomerMain />} />
         <Route path="/checkpw" element={<Checkpw />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/choose" element={<Choose />} />

@@ -39,7 +39,7 @@ function Save() {
       <div class="nav justify-content-end bg-dark">
         <Navbar expand="lg" variant="dark" bg="dark">
           <Container>
-            <Navbar.Brand href="/checkpw">Admin</Navbar.Brand>
+            <Navbar.Brand href="/admin">Admin</Navbar.Brand>
           </Container>
         </Navbar>
       </div>
