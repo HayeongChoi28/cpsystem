@@ -23,6 +23,8 @@ connection.all = util.promisify(connection.all);
 
 app.context.db = connection;
 
+//잉
+
 app.use(
   KoaCompose([
     errorHandlerMd,
@@ -36,7 +38,7 @@ app.use(
         keepExtensions: true,
       },
     }),
-  ]),
+  ])
 );
 
 app.use(routerRoutesMd(Router)).use(routerAllowMethodsMd(Router));
