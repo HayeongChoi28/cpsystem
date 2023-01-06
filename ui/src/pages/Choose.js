@@ -6,13 +6,14 @@ function Choose(props) {
   let navigate = useNavigate();
   return (
     <>
-      <div class="nav justify-content-end bg-dark">
-        <Navbar expand="lg" variant="dark" bg="dark">
-          <Container>
-            <Navbar.Brand href="/checkpw">Admin</Navbar.Brand>
-          </Container>
-        </Navbar>
-      </div>
+      <div className="Nav">
+        <div class="nav justify-content-end bg-dark">
+          <Navbar expand="lg" variant="dark" bg="dark">
+            <Container>
+              <Navbar.Brand href="/checkpw">Admin</Navbar.Brand>
+            </Container>
+          </Navbar>
+        </div></div>
       <div className="chooseBtn">
         <div className="btn2">
           <button

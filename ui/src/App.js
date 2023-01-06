@@ -96,62 +96,94 @@ function App() {
           path="/"
           element={
             <>
-              <div class="nav justify-content-end bg-dark">
-                <Navbar expand="lg" variant="dark" bg="dark">
-                  <Container>
-                    <Navbar.Brand>Coupon</Navbar.Brand>
-                  </Container>
-                </Navbar>
-              </div>
-              <div className="text">
-                <div className="title">로그인</div>
-                <div className="explanation">
-                  아이디
-                  <br />
-                  <br />
-                  <input
-                    name="id"
-                    type="text"
-                    size="20"
-                    onChange={(e) => handleInput(e)}
-                  />
-                  <br />
-                  <br />
-                  비밀번호
-                  <br />
-                  <br />
-                  <input
-                    name="pw"
-                    type="password"
-                    size="20"
-                    onChange={(e) => handleInput(e)}
-                  />
-                  <br />
-                  <br />
+              <div className="Nav">
+                <div class="nav justify-content-end bg-dark">
+                  <Navbar expand="lg" variant="dark" bg="dark">
+                    <Container>
+                      <Navbar.Brand>Coupon</Navbar.Brand>
+                    </Container>
+                  </Navbar>
                 </div>
               </div>
 
-              <div className="Btn">
-                <button
-                  onClick={() => {
-                    ceohandleLogin();
-                  }}
-                  type="button"
-                  className="btn btn-dark"
-                  disabled={loginData.id.length <= 0 || loginData.pw <= 0}
-                >
-                  사장님로그인
-                </button>
-                <button
-                  onClick={() => {
-                    custhandleLogin();
-                  }}
-                  type="button"
-                  className="btn btn-dark"
-                  disabled={loginData.id.length <= 0 || loginData.pw <= 0}
-                >
-                  사용자로그인
-                </button>
+              <div class="container px-4">
+                <div class="row gx-5">
+                  <div class="col">
+                    <div className="text">
+                      <div className="title">CEO LOGIN</div>
+                      <div className="explanation">
+                        아이디
+                        <br />
+                        <input
+                          name="id"
+                          type="text"
+                          size="20"
+                          onChange={(e) => handleInput(e)}
+                        />
+                        <br />
+                        <br />
+                        비밀번호
+                        <br />
+                        <input
+                          name="pw"
+                          type="password"
+                          size="20"
+                          onChange={(e) => handleInput(e)}
+                        />
+                      </div>
+                    </div>
+                    <div className="Btn">
+                      <button
+                        onClick={() => {
+                          ceohandleLogin();
+                        }}
+                        type="button"
+                        className="btn btn-primary"
+                        disabled={loginData.id.length <= 0 || loginData.pw <= 0}
+                      >
+                        GO TO
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div className="text">
+                      <div className="title">CUS LOGIN</div>
+                      <div className="explanation">
+                        아이디
+                        <br />
+                        <input
+                          name="id"
+                          type="text"
+                          size="20"
+                          onChange={(e) => handleInput(e)}
+                        />
+                        <br />
+                        <br />
+                        비밀번호
+                        <br />
+                        <input
+                          name="pw"
+                          type="password"
+                          size="20"
+                          onChange={(e) => handleInput(e)}
+                        />
+                      </div>
+                    </div>
+                    <div className="Btn">
+                      <button
+                        onClick={() => {
+                          custhandleLogin();
+                        }}
+                        type="button"
+                        className="btn btn-warning"
+                        disabled={loginData.id.length <= 0 || loginData.pw <= 0}
+                      >
+                        GO TO
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </>
           }

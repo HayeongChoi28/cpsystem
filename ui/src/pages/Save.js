@@ -37,13 +37,14 @@ function Save() {
 
   return (
     <>
-      <div class="nav justify-content-end bg-dark">
-        <Navbar expand="lg" variant="dark" bg="dark">
-          <Container>
-            <Navbar.Brand>Coupon</Navbar.Brand>
-          </Container>
-        </Navbar>
-      </div>
+      <div className="Nav">
+        <div class="nav justify-content-end bg-primary">
+          <Navbar expand="lg" variant="dark" bg="primary">
+            <Container>
+              <Navbar.Brand>Coupon</Navbar.Brand>
+            </Container>
+          </Navbar>
+        </div></div>
       <div class="save">
         <div class="text">
           <div class="title">쿠폰 적립</div>
@@ -65,7 +66,7 @@ function Save() {
               handleUpdate();
             }}
             type="button"
-            class="btn btn-dark"
+            class="btn btn-primary"
           >
             확인
           </button>

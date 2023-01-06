@@ -4,6 +4,7 @@ import { Form, Navbar, Container, Nav } from "react-bootstrap";
 import placedata from "../placedata.js";
 import data from "../data";
 import axios from "axios";
+import "./Tem.css";
 
 function CustomerMain() {
   let [place] = useState(placedata);
@@ -48,15 +49,17 @@ function CustomerMain() {
 
   return (
     <div className="App">
-      <div class="nav justify-content-end bg-dark">
-        <Navbar expand="lg" variant="dark" bg="dark">
-          <Container>
-            <Navbar.Brand>보유쿠폰 {coupon.custPt} 개</Navbar.Brand>
-            <Navbar.Brand href="/" onClick={(e) => logout(e)}>
-              Logout
-            </Navbar.Brand>
-          </Container>
-        </Navbar>
+      <div className="Nav">
+        <div class="nav justify-content-end bg-warning">
+          <Navbar expand="lg" variant="dark" bg="warning">
+            <Container>
+              <Navbar.Brand>보유쿠폰 {coupon.custPt} 개</Navbar.Brand>
+              <Navbar.Brand href="/" onClick={(e) => logout(e)}>
+                Logout
+              </Navbar.Brand>
+            </Container>
+          </Navbar>
+        </div>
       </div>
 
       <Routes>
@@ -82,17 +85,23 @@ function CustomerMain() {
 
 function Card(props) {
   return (
-    <div className="col-md-3">
-      <img
-        className="cafeImage"
-        alt="cafeImage"
-        src={"/img/cafe" + props.i + ".jpg"}
-        width="80%"
-      />
-      <h4>{props.place.placeTitle}</h4>
-      <p>{props.place.placeContent}</p>
-      <p>{props.place.placeLocation}</p>
-    </div>
+    <div className="col-md-4">
+      <div className="store">
+        <img
+          className="cafeImage"
+          alt="cafeImage"
+          src={"/img/cafe" + props.i + ".jpg"}
+          class="rounded"
+          width="100%"
+        />
+        <div className="detail">
+          <h6>{props.place.placeTitle}</h6>
+          <h10>{props.place.placeContent}</h10>
+          <br />
+          <h9>{props.place.placeLocation}</h9>
+        </div>
+      </div>
+    </div >
   );
 }
 

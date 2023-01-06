@@ -38,15 +38,17 @@ function CeoMain() {
 
   return (
     <>
-      <div class="nav justify-content-end bg-dark">
-        <Navbar expand="lg" variant="dark" bg="dark">
-          <Container>
-            <Navbar.Brand onClick={(e) => adminClick(e)}>Admin</Navbar.Brand>
-            <Navbar.Brand onClick={(e) => logout(e)} href="/">
-              Logout
-            </Navbar.Brand>
-          </Container>
-        </Navbar>
+      <div className="Nav">
+        <div class="nav justify-content-end bg-primary">
+          <Navbar expand="lg" variant="dark" bg="primary">
+            <Container>
+              <Navbar.Brand onClick={(e) => adminClick(e)}>Admin</Navbar.Brand>
+              <Navbar.Brand onClick={(e) => logout(e)} href="/">
+                Logout
+              </Navbar.Brand>
+            </Container>
+          </Navbar>
+        </div>
       </div>
       <div className="title">쿠폰 적립</div>
       <div className="explanation">쿠폰 적립을 위해 번호를 입력해 주세요</div>
@@ -61,7 +63,7 @@ function CeoMain() {
         <button
           onClick={custhandleLogin}
           type="button"
-          className="btn btn-dark"
+          className="btn btn-primary"
           disabled={checkId.length <= 0}
         >
           확인

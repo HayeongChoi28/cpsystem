@@ -30,13 +30,15 @@ function Admin() {
 
   return (
     <>
-      <div class="nav justify-content-end bg-dark">
-        <Navbar expand="lg" variant="dark" bg="dark">
-          <Container>
-            <Navbar.Brand onClick={(e) => ceomainClick(e)}>Coupon</Navbar.Brand>
-            <Navbar.Brand href="/">Logout</Navbar.Brand>
-          </Container>
-        </Navbar>
+      <div className="Nav">
+        <div class="nav justify-content-end bg-primary">
+          <Navbar expand="lg" variant="dark" bg="primary">
+            <Container>
+              <Navbar.Brand onClick={(e) => ceomainClick(e)}>Coupon</Navbar.Brand>
+              <Navbar.Brand href="/">Logout</Navbar.Brand>
+            </Container>
+          </Navbar>
+        </div>
       </div>
       <div className="use">
         <div className="text">
@@ -48,7 +50,7 @@ function Admin() {
           </div>
         </div>
         <div className="Btn">
-          <button onClick={() => {}} type="button" className="btn btn-dark">
+          <button onClick={() => { }} type="button" className="btn btn-primary">
             코인충전
           </button>
         </div>
