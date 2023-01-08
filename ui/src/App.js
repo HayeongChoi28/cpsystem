@@ -105,33 +105,32 @@ function App() {
                   </Navbar>
                 </div>
               </div>
-
+              <div className="text">
+                <div className="title">LOGIN</div>
+                <div className="explanation">
+                  아이디
+                  <br />
+                  <input
+                    name="id"
+                    type="text"
+                    size="20"
+                    onChange={(e) => handleInput(e)}
+                  />
+                  <br />
+                  <br />
+                  비밀번호
+                  <br />
+                  <input
+                    name="pw"
+                    type="password"
+                    size="20"
+                    onChange={(e) => handleInput(e)}
+                  />
+                </div>
+              </div>
               <div class="container px-4">
                 <div class="row gx-5">
                   <div class="col">
-                    <div className="text">
-                      <div className="title">CEO LOGIN</div>
-                      <div className="explanation">
-                        아이디
-                        <br />
-                        <input
-                          name="id"
-                          type="text"
-                          size="20"
-                          onChange={(e) => handleInput(e)}
-                        />
-                        <br />
-                        <br />
-                        비밀번호
-                        <br />
-                        <input
-                          name="pw"
-                          type="password"
-                          size="20"
-                          onChange={(e) => handleInput(e)}
-                        />
-                      </div>
-                    </div>
                     <div className="Btn">
                       <button
                         onClick={() => {
@@ -141,35 +140,11 @@ function App() {
                         className="btn btn-primary"
                         disabled={loginData.id.length <= 0 || loginData.pw <= 0}
                       >
-                        GO TO
+                        CEO LOGIN
                       </button>
                     </div>
                   </div>
-
                   <div class="col">
-                    <div className="text">
-                      <div className="title">CUS LOGIN</div>
-                      <div className="explanation">
-                        아이디
-                        <br />
-                        <input
-                          name="id"
-                          type="text"
-                          size="20"
-                          onChange={(e) => handleInput(e)}
-                        />
-                        <br />
-                        <br />
-                        비밀번호
-                        <br />
-                        <input
-                          name="pw"
-                          type="password"
-                          size="20"
-                          onChange={(e) => handleInput(e)}
-                        />
-                      </div>
-                    </div>
                     <div className="Btn">
                       <button
                         onClick={() => {
@@ -179,7 +154,7 @@ function App() {
                         className="btn btn-warning"
                         disabled={loginData.id.length <= 0 || loginData.pw <= 0}
                       >
-                        GO TO
+                        CUS LOGIN
                       </button>
                     </div>
                   </div>
